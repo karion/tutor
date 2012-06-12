@@ -1,0 +1,18 @@
+{% extends "karionCourseBundle::layout.html.twig" %}
+
+{% block content %}
+  <div id="course-list">
+    <h2>
+      <a href="{{ path('karionCourseBundle_courseShow', {'id': lesson.course.id }) }}">
+        {{ lesson.course.title }}
+      </a>
+      -  
+      {{ lesson.title }}  
+    </h2>
+    
+    <p>
+      {{ lesson.content }}
+    </p>  
+    
+  </div>
+{% endblock %}

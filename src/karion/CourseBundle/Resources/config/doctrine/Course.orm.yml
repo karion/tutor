@@ -1,0 +1,23 @@
+karion\CourseBundle\Entity\Course:
+  type: entity
+  table: course
+  repositoryClass: karion\CourseBundle\Entity\CourseRepository
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    title:
+      type: string
+      length: 200
+    description:
+      type: text
+      nullable: true
+    active:
+      type: boolean
+  oneToMany:
+    lessons:
+      targetEntity: karion\LessonBundle\Entity\Lesson
+      mappedBy: course
+      
+        

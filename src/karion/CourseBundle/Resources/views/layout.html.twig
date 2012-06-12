@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Tutor!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+   
+        {% stylesheets filter='cssrewrite,?yui_css' 
+          '@MopaBootstrapBundle/Resources/bootstrap/docs/assets/css/bootstrap.css'
+        %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
+          media="screen" />
+        {% endstylesheets %}
+
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+      <div class="container">
+    {% block body %}
+
+      {% block header %}
+      <div id="header" class="row">
+        <div class="span12">
+          <h1>
+            <a href="{{ path('karionCourseBundle_homepage') }}">
+              Tutor
+            </a>
+          </h1>
+        </div> 
+      </div>
+      {% endblock %}
+
+      {% block main %}
+      <div id="main" class="row">
+        <div id="menu" class="span4">
+          {% block menu %}
+          <h2>Menu</h2>
+            <ul class="nav nav-list">
+              <li class="active">
+                <a href="{{ path('karionCourseBundle_homepage') }}">
+                  Strona Główna
+                </a>
+              </li>
+            </ul>
+          {% endblock %}
+        </div>
+
+        <div id="content" class="span8">
+          {% block content %}
+            
+          {% endblock %}
+        </div>
+
+      </div>
+      {% endblock %}
+
+    {% endblock %}
+          </div> 
+   {% block javascripts %}{% endblock %}
+    </body>
+</html>

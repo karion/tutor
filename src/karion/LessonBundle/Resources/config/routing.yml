@@ -1,0 +1,4 @@
+karionLessonBundle_show:
+    pattern:  /{id}
+    defaults: { _controller: karionLessonBundle:Lesson:show }
+    requirements: {_method: GET ,id: \d+ }

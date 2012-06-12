@@ -1,0 +1,7 @@
+parameters:
+#    karion_course.example.class: karion\CourseBundle\Example
+
+services:
+#    karion_course.example:
+#        class: %karion_course.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

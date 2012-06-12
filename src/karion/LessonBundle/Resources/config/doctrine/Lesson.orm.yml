@@ -1,0 +1,28 @@
+karion\LessonBundle\Entity\Lesson:
+  type: entity
+  table: lesson
+  repositoryClass: karion\LessonBundle\Entity\LessonRepository 
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    title:
+      type: string
+      length: 200
+    slug:
+      type: string
+      length: 200
+    content:
+      type: text
+    active:
+      type: boolean
+  manyToOne:
+    course:
+      targetEntity: karion\CourseBundle\Entity\Course
+      inversedBy: lessons
+      joinColumn:
+        name: course_id
+        referencedColumnName: id
+          
+        
