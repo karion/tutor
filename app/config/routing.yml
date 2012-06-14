@@ -1,6 +1,6 @@
 karionLessonBundle:
     resource: "@karionLessonBundle/Resources/config/routing.yml"
-    prefix:   /lesson/
+    prefix:   /
 
 karionCourseBundle:
     resource: "@karionCourseBundle/Resources/config/routing.yml"

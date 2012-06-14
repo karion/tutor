@@ -19,7 +19,7 @@
       <ul>
       {%  for lesson in course.lessons %}
           <li>
-            <a href="{{ path('karionLessonBundle_show', {'id': lesson.id})}}" >
+            <a href="{{ path('karionLessonBundle_showBySlug', {'courseId': course.id, 'slug': lesson.slug})}}" >
               {{ lesson.title }}
             </a>
           </li>

@@ -9,151 +9,151 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Lesson
 {
-    /**
-     * @var integer $id
-     */
-    private $id;
 
-    /**
-     * @var string $title
-     */
-    private $title;
+  /**
+   * @var integer $id
+   */
+  private $id;
 
-    /**
-     * @var string $slug
-     */
-    private $slug;
+  /**
+   * @var string $title
+   */
+  private $title;
 
-    /**
-     * @var text $content
-     */
-    private $content;
+  /**
+   * @var string $slug
+   */
+  private $slug;
 
-    /**
-     * @var boolean $active
-     */
-    private $active;
+  /**
+   * @var text $content
+   */
+  private $content;
 
-    /**
-     * @var karion\CourseBundle\Entity\Course
-     */
-    private $course;
+  /**
+   * @var boolean $active
+   */
+  private $active;
 
+  /**
+   * @var karion\CourseBundle\Entity\Course
+   */
+  private $course;
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+  /**
+   * Get id
+   *
+   * @return integer 
+   */
+  public function getId()
+  {
+    return $this->id;
+  }
 
-    /**
-     * Set title
-     *
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-        
-        $this->setSlug(self::slugify($title));
-    }
+  /**
+   * Set title
+   *
+   * @param string $title
+   */
+  public function setTitle($title)
+  {
+    $this->title = $title;
 
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
+    $this->setSlug(self::slugify($title));
+  }
 
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     */
-    protected function setSlug($slug)
-    {
-        $this->slug = $slug;
-    }
+  /**
+   * Get title
+   *
+   * @return string 
+   */
+  public function getTitle()
+  {
+    return $this->title;
+  }
 
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
+  /**
+   * Set slug
+   *
+   * @param string $slug
+   */
+  protected function setSlug($slug)
+  {
+    $this->slug = $slug;
+  }
 
-    /**
-     * Set content
-     *
-     * @param text $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-    }
+  /**
+   * Get slug
+   *
+   * @return string 
+   */
+  public function getSlug()
+  {
+    return $this->slug;
+  }
 
-    /**
-     * Get content
-     *
-     * @return text 
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
+  /**
+   * Set content
+   *
+   * @param text $content
+   */
+  public function setContent($content)
+  {
+    $this->content = $content;
+  }
 
-    /**
-     * Set active
-     *
-     * @param boolean $active
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-    }
+  /**
+   * Get content
+   *
+   * @return text 
+   */
+  public function getContent()
+  {
+    return $this->content;
+  }
 
-    /**
-     * Get active
-     *
-     * @return boolean 
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
+  /**
+   * Set active
+   *
+   * @param boolean $active
+   */
+  public function setActive($active)
+  {
+    $this->active = $active;
+  }
 
-    /**
-     * Set course
-     *
-     * @param karion\CourseBundle\Entity\Course $course
-     */
-    public function setCourse(\karion\CourseBundle\Entity\Course $course)
-    {
-        $this->course = $course;
-    }
+  /**
+   * Get active
+   *
+   * @return boolean 
+   */
+  public function getActive()
+  {
+    return $this->active;
+  }
 
-    /**
-     * Get course
-     *
-     * @return karion\CourseBundle\Entity\Course 
-     */
-    public function getCourse()
-    {
-        return $this->course;
-    }
+  /**
+   * Set course
+   *
+   * @param karion\CourseBundle\Entity\Course $course
+   */
+  public function setCourse(\karion\CourseBundle\Entity\Course $course)
+  {
+    $this->course = $course;
+  }
 
-    static public function slugify($text)
-    {
+  /**
+   * Get course
+   *
+   * @return karion\CourseBundle\Entity\Course 
+   */
+  public function getCourse()
+  {
+    return $this->course;
+  }
+
+  static public function slugify($text)
+  {
     // replace non letter or digits by -
     $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
 
@@ -161,9 +161,9 @@ class Lesson
     $text = trim($text, '-');
 
     // transliterate
-    if (function_exists('iconv'))
+    if(function_exists('iconv'))
     {
-        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+      $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
     }
 
     // lowercase
@@ -172,13 +172,12 @@ class Lesson
     // remove unwanted characters
     $text = preg_replace('#[^-\w]+#', '', $text);
 
-    if (empty($text))
+    if(empty($text))
     {
-        return 'n-a';
+      return 'n-a';
     }
 
     return $text;
-    }
-
+  }
 
 }

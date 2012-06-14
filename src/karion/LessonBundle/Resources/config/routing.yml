@@ -2,3 +2,17 @@ karionLessonBundle_show:
     pattern:  /{id}
     defaults: { _controller: karionLessonBundle:Lesson:show }
     requirements: {_method: GET ,id: \d+ }
+
+karionLessonBundle_showBySlug:
+    pattern:  /course/{courseId}/{slug}
+    defaults: { _controller: karionLessonBundle:Lesson:showBySlug }
+    requirements:
+      _method: GET
+      courseId: \d+
+      slug: "[-\w]+"
+
+    
+    
+karionRun:
+  pattern: /alfa
+  defaults: { _controller: karionLessonBundle:Lesson:run }

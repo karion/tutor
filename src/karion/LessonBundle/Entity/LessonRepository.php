@@ -26,4 +26,20 @@ class LessonRepository extends EntityRepository
     
     return $a;
   }
+  
+    public function getLessonWithCourseBySlug($courseId, $slug)
+    {
+      $a = $this->createQueryBuilder('l')
+        ->select('c, l')
+        ->innerJoin('l.course', 'c')
+        ->where('c.id = :id')
+        ->andWhere('l.slug = :slug')
+        ->setParameter('id', $courseId )
+        ->setParameter('slug', $slug )
+        ->getQuery()
+      
+        ->getSingleResult();
+    
+    return $a;
+  }
 }

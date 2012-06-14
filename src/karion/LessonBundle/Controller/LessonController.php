@@ -12,7 +12,6 @@ class LessonController extends Controller
     {
       $lesson = $this->getDoctrine()
 			->getRepository('karionLessonBundle:Lesson')
-      //->find($id);
       ->getLessonWithCourse($id);
       
       return $this->render(
@@ -22,4 +21,23 @@ class LessonController extends Controller
                   )
               );
     }
+    
+    public function showBySlugAction($courseId,$slug)
+    {
+      $lesson = $this->getDoctrine()
+			->getRepository('karionLessonBundle:Lesson')
+      ->getLessonWithCourseBySlug($courseId, $slug);
+      
+      if(is_null($lesson))
+      {
+        throw( new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException("Nie odnaleziono lekcji"));
+      }
+      return $this->render(
+              'karionLessonBundle:Lesson:show.html.twig', 
+              array(
+                  'lesson' => $lesson
+                  )
+              );
+    }
+
 }
