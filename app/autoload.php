@@ -17,6 +17,7 @@ $loader->registerNamespaces(array(
     
     'karion'           => __DIR__.'/../src',
     'Mopa'             => __DIR__.'/../vendor/bundles',
+    
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',

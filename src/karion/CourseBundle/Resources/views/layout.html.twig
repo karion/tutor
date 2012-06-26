@@ -5,8 +5,9 @@
         <title>{% block title %}Tutor!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
    
-        {% stylesheets filter='cssrewrite,?yui_css' 
+        {% stylesheets filter='cssrewrite' 
           '@MopaBootstrapBundle/Resources/bootstrap/docs/assets/css/bootstrap.css'
+
         %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
           media="screen" />

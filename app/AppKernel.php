@@ -17,10 +17,12 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
-           
+            
             new karion\CourseBundle\karionCourseBundle(),
             new karion\LessonBundle\karionLessonBundle(),
+            new karion\UserBundle\karionUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

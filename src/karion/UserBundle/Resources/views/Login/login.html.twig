@@ -1,0 +1,25 @@
+{% extends "karionCourseBundle::layout.html.twig" %}
+
+{% block content %}
+
+  {% if error %}
+    <div class="alert alert-error">{{ error.message }}</div>
+  {% endif %}
+
+    <form action="{{ path('login_check') }}" method="post">
+
+      <div>
+        <label for="username">Email:</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+
+        <label for="password">Hasło:</label>
+        <input type="password" id="password" name="_password" />
+
+      </div>
+
+      <button class="btn btn-primary" type="submit">Zaloguj</button>
+      <a class="btn" data-toggle="dropdown" href="#">
+        Utwórz nowe konto
+      </a>
+    </form>
+{% endblock %}

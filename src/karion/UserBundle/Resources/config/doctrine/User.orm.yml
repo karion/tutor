@@ -1,0 +1,30 @@
+karion\UserBundle\Entity\User:
+  type: entity
+  table: user_my
+  repositoryClass: karion\UserBundle\Entity\UserRepository 
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    username: 
+      #email
+      type: string
+      length: 100
+      unique: true
+    salt:
+      #sha256
+      type: string
+      length: 40
+    password: 
+      #sha512
+      type: string
+      length: 128
+    isActive:
+      type: boolean
+    name:
+      type: string
+      length: 50
+
+          
+        
