@@ -1,0 +1,21 @@
+{% extends "karionCourseBundle::layout.html.twig" %}
+
+{% block content %}
+{% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
+
+  <form action="{{ path('userCreate') }}" class="form-horizontal well" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.password) }}
+    {{ form_row(form.statute) }}
+
+    {{ form_rest(form) }}
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">
+        Rejestruj
+      </button>
+    </div>
+  </form>
+{% endblock %}

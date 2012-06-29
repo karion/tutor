@@ -1,0 +1,32 @@
+karion\UserBundle\Entity\UserToken:
+  type: entity
+  table: user_token
+  repositoryClass: karion\UserBundle\Entity\UserTokenRepository 
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    
+    token: 
+      #sha254
+      type: string
+      length: 40
+      unique: true
+      nullable: false
+      
+    tokenType:
+      type: integer
+      nullable: false
+      
+    activeTo:
+      type: datetime
+      nullable: false
+      
+  manyToOne:    
+    user:
+      targetEntity: karion\UserBundle\Entity\User
+      inversedBy: tokens
+      joinColumn:
+        name: user_id
+        referencedColumnName: id

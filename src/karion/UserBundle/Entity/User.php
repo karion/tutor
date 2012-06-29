@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * karion\UserBundle\Entity\User
  */
@@ -188,5 +189,30 @@ class User implements AdvancedUserInterface
     public function isEnabled()
     {
         return $this->isActive;
+    }
+    /**
+     * @var karion\UserBundle\Entity\UserToken
+     */
+    private $lessons;
+
+
+    /**
+     * Add lessons
+     *
+     * @param karion\UserBundle\Entity\UserToken $lessons
+     */
+    public function addUserToken(\karion\UserBundle\Entity\UserToken $lessons)
+    {
+        $this->lessons[] = $lessons;
+    }
+
+    /**
+     * Get lessons
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getLessons()
+    {
+        return $this->lessons;
     }
 }

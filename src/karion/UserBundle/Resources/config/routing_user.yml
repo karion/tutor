@@ -1,0 +1,37 @@
+
+userNew:
+  pattern:  /new
+  defaults: { _controller: karionUserBundle:User:new }
+  requirements: 
+    _method: GET
+  
+userCreate:
+  pattern:  /new
+  defaults: { _controller: karionUserBundle:User:create }
+  requirements: 
+    _method: POST
+    
+userCreateInfo:
+  pattern: /info
+  defaults: { _controller: karionUserBundle:User:createInfo }
+  requirements: 
+    _method: GET
+
+userActivate:
+  pattern:  /activate
+  defaults: { _controller: karionUserBundle:User:activate }
+  requirements: 
+    _method: GET
+
+userEdit:
+  pattern:  /edit
+  defaults: { _controller: karionUserBundle:User:edit }
+  requirements: 
+    _method: GET
+    
+userEdit:
+  pattern:  /edit
+  defaults: { _controller: karionUserBundle:User:editPost }
+  requirements: 
+    _method: POST   
+    

@@ -1,0 +1,15 @@
+{% extends "karionCourseBundle::layout.html.twig" %}
+
+{% block content %}
+<div class="well">
+  <p>
+    Twoje konto zostało utworzone poprawnie. Aby z niego korzystać prosze 
+    odebrtać email aktywacyjny wyłany na podany adres.
+  </p>
+  <p>
+    <a href="{{path('karionCourseBundle_homepage')}}">
+      Powrót na stronę główną.
+    </a>
+  </p>
+</div>
+{% endblock %}

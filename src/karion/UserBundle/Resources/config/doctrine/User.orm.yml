@@ -25,6 +25,11 @@ karion\UserBundle\Entity\User:
     name:
       type: string
       length: 50
+      
+  oneToMany:
+    lessons:
+      targetEntity: karion\UserBundle\Entity\UserToken
+      mappedBy: user
 
           
         

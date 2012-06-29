@@ -1,0 +1,18 @@
+<div>
+  <p>
+    Witaj {{ user.name }}!
+  </p>
+  
+  <p>
+    Serwis Tutor utworzył konto dla Ciebie! Aby je aktywować kliknij ten 
+    <a href="{{ url('userActivate') }}?token={{ token.token }}">link</a>
+    i zacznij korzystać z naszych kursów!
+  </p>
+  
+  <p>
+    Pozdrawiamy
+    <br />
+    Zaspół portalu Tutor
+  </p>
+
+</div>

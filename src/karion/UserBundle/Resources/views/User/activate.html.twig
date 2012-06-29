@@ -1,0 +1,33 @@
+{% extends "karionCourseBundle::layout.html.twig" %}
+
+{% block content %}
+
+  {% if error %}
+
+    <div class="alert alert-error">{{ error }}</div>
+    <div>
+      <p>
+        Sprawdź poprawność adresu lub skontaktuj się z obsługą portalu.
+      </p>
+    </div>
+    
+  {% else %}
+    
+    <div class="alert alert-success">
+      Konto zostało aktywowane poprawnie.
+    </div>
+    <div>
+      <p>
+        Przejdź do 
+        <a href="{{path('login')}}">strony logowania</a>
+        lub 
+        <a href="{{path('karionCourseBundle_homepage')}}">
+          strony głównej.
+        </a>
+      <p>
+      </p>
+    </div>
+    
+  {% endif %}
+    
+{% endblock %}

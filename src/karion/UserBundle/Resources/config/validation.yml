@@ -1,0 +1,29 @@
+karion\UserBundle\Entity\User:
+  constraints:
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: username
+  properties:
+    username:
+      - NotBlank:
+          message: Należy podać email
+      - Email:
+          message: Email "{{ value }}" nie jest poprawny
+        
+    password:
+      - NotBlank: 
+          message: Należy podać hasło
+      - MinLength:
+          limit: 6, 
+          message: Hasło musi posidać conajmniej 6 znaków
+    name:
+      - NotBlank: 
+          message: Należy podać imię i nazwisko
+      - MinLength:
+          limit: 2,
+          message: Należy podać imię i nazwisko
+      - Regex:
+          pattern: "/^\s+$/"
+          match:   false
+          message: Należy podać imię i nazwisko
+      
+      
+      

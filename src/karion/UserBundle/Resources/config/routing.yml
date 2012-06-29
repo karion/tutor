@@ -7,3 +7,9 @@ login_check:
 
 logout:
   pattern: /logout
+  
+#user routing
+user:
+  resource: "@karionUserBundle/Resources/config/routing_user.yml"
+  prefix:   /user
+
