@@ -27,9 +27,14 @@ karion\UserBundle\Entity\User:
       length: 50
       
   oneToMany:
-    lessons:
+    tokens:
       targetEntity: karion\UserBundle\Entity\UserToken
       mappedBy: user
+      
+  manyToMany:
+    groups:
+      targetEntity: Group
+      inversedBy: users
 
           
         

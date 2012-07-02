@@ -9,12 +9,13 @@ security:
 #        Symfony\Component\Security\Core\User\User: plaintext
 
     role_hierarchy:
-        ROLE_ADMIN:  [ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN:  [ROLE_USER, ROLE_CREATOR, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
         administrators:
-            entity: { class: karionUserBundle:User, property: username }
-    
+            entity: { class: karionUserBundle:User }
+#            entity: { class: karionUserBundle:User, property: username }
+            
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/

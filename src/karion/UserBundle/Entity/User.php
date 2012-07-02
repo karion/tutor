@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
+
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * karion\UserBundle\Entity\User
@@ -41,11 +43,24 @@ class User implements AdvancedUserInterface
      * @var string $name
      */
     private $name;
+    
+    /**
+     * @var karion\UserBundle\Entity\UserToken
+     */
+    private $tokens;
+    
+    /**
+     * @var karion\UserBundle\Entity\Group
+     */
+    private $groups;
+    
+
 
     public function __construct()
     {
       $this->isActive = false;
       $this->salt = hash('sha256', (uniqid(null, true)));
+      $this->groups = new ArrayCollection();
     }
     /**
      * Get id
@@ -156,12 +171,7 @@ class User implements AdvancedUserInterface
     {
         return $this->name;
     }
-    
-    public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
-    
+     
     public function eraseCredentials()
     {
     }
@@ -190,20 +200,15 @@ class User implements AdvancedUserInterface
     {
         return $this->isActive;
     }
-    /**
-     * @var karion\UserBundle\Entity\UserToken
-     */
-    private $lessons;
-
 
     /**
-     * Add lessons
+     * Add tokens
      *
      * @param karion\UserBundle\Entity\UserToken $lessons
      */
-    public function addUserToken(\karion\UserBundle\Entity\UserToken $lessons)
+    public function addUserToken(\karion\UserBundle\Entity\UserToken $tokens)
     {
-        $this->lessons[] = $lessons;
+        $this->tokens[] = $tokens;
     }
 
     /**
@@ -211,8 +216,33 @@ class User implements AdvancedUserInterface
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getLessons()
+    public function getTokens()
     {
-        return $this->lessons;
+        return $this->tokens;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param karion\UserBundle\Entity\Group $groups
+     */
+    public function addGroup(\karion\UserBundle\Entity\Group $groups)
+    {
+        $this->groups[] = $groups;
+    }
+
+    /**
+     * Get groups
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+    
+    public function getRoles()
+    {
+        return $this->groups->toArray();
     }
 }

@@ -12,6 +12,8 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Doctrine\ORM\NoResultException;
 use karion\UserBundle\Entity\User;
 use karion\UserBundle\Entity\UserToken;
+use karion\UserBundle\Entity\Group;
+use karion\UserBundle\Entity\GroupRepository;
 
 use karion\UserBundle\Form\Type\UserType;
 
@@ -39,6 +41,9 @@ class UserController extends Controller
     $form->bindRequest($request);
 
     if ($form->isValid()) {
+      
+      $em = $this->getDoctrine()->getEntityManager();
+      
       // zapisz do bazy user
       $factory = $this->container->get('security.encoder_factory');
       $encoder = $factory->getEncoder($user);
@@ -48,7 +53,12 @@ class UserController extends Controller
           $user->getSalt()
           ));
       
-      $em = $this->getDoctrine()->getEntityManager();
+      $repository = $em->getRepository('karionUserBundle:Group');
+
+      $user->addGroup(
+        $repository->getRole(GroupRepository::ROLE_USER)
+        );
+      
       $em->persist($user);
       $em->flush();
       
