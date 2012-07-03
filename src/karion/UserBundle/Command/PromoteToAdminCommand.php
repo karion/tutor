@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use karion\UserBundle\Entity\User;
 use karion\UserBundle\Entity\Group;
-//use karion\UserBundle\Entity\GroupRepository;
+use karion\UserBundle\Entity\GroupRepository;
 
 class PromoteToAdminCommand extends ContainerAwareCommand
 {
@@ -32,23 +32,32 @@ class PromoteToAdminCommand extends ContainerAwareCommand
   {
     $container = $this->getContainer();
     $doctrine = $container->get('doctrine');
-    $repository = $doctrine->getRepository('karionUserBundle:User');
+    
     $username = $input->getArgument('email');
+    
     try
     {
-      $user = $repository->findOneByUsername($username);
+      $user = $doctrine
+                ->getRepository('karionUserBundle:User')
+                ->findOneByUsername($username);
     }
     catch (\Exception $e)
     {
-      $output->writeln('Niepowodzenie!');
-      return 0;
+      $output->writeln('<error>Nie udało się odnaleźć użytkownika '.$username.'</error>');
+      return 1; //bład powłoki
     }
     
     $GroupRepository = $doctrine->getRepository('karionUserBundle:Group');
     
-    /* @var karion\UserBundle\Entity\User $user  */
+    
+    if($user->getGroups()->contains( $GroupRepository->getRole(GroupRepository::ROLE_ADMIN) ) )
+    {
+      $output->writeln('<error>Użytkownik '.$username.' jest już Adminem.</error>');
+      return 1; //bład powłoki
+    }
+
     $user->addGroup(
-      $GroupRepository->getRole(\karion\UserBundle\Entity\GroupRepository::ROLE_ADMIN)
+      $GroupRepository->getRole(GroupRepository::ROLE_ADMIN)
       );
 
     $em = $doctrine->getEntityManager();
@@ -60,11 +69,12 @@ class PromoteToAdminCommand extends ContainerAwareCommand
     }
     catch(\Exception $e)
     {
-      $output->writeln('niepowodzenie');
-      return 0;
+      $output->writeln('<error> Zapis do bazy nie powiódł się</error>');
+      return 1;//bład powłoki
     }
     
-    $output->writeln('Użytkownik '.$username.' został Adminem.'  );
+    $output->writeln('<info>Użytkownik '.$username.' został Adminem.</info>'  );
+    return 0; //sukces
   }
 
 }

@@ -40,6 +40,21 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 
     return $user;
   }
+  
+  public function findOneByUsername($username)
+  {
+        $q = $this
+      ->createQueryBuilder('u')
+      ->select('u, g')
+      ->leftJoin('u.groups', 'g')
+      ->where('u.username = :username')
+      ->setParameter('username', $username)
+      ->getQuery()
+    ;
+
+    return $q->getSingleResult();
+    
+  }
 
   public function refreshUser(UserInterface $user)
   {
