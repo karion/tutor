@@ -1,0 +1,23 @@
+<div id="menu" class="span4">
+
+  <h2>Menu</h2>
+  <ul class="nav nav-list">
+    <li>
+      <a href="{{ path('karionCourseBundle_homepage') }}">
+        Strona Główna
+      </a>
+    </li>
+
+  {% if is_granted('ROLE_CREATOR') %}
+    <li><a href="{{ path('logout') }}">Utwórz nowy kurs</a></li>
+  {% endif %}  
+  {% if is_granted('ROLE_USER') %}
+    <li><a href="{{ path('logout') }}">Wyloguj</a></li>
+  {% else %}
+    <li><a href="{{ path('login') }}">Zaloguj</a></li>
+    <li><a href="{{ path('userNew') }}">Załóż konto</a></li>
+  {% endif %}
+
+  </ul>
+
+</div>
