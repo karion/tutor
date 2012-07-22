@@ -1,0 +1,14 @@
+karionCourseBundleAdmin_create:
+    pattern:  /create
+    defaults: { _controller: karionCourseBundle:Admin:create }
+    
+karionCourseBundleAdmin_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: karionCourseBundle:Admin:edit } 
+    requirements: 
+      id: \d+ 
+      
+karionCourseBundleAdmin_list:
+    pattern:  /list
+    defaults: { _controller: karionCourseBundle:Admin:list }      
+      

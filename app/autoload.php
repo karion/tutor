@@ -17,6 +17,7 @@ $loader->registerNamespaces(array(
     
     'karion'           => __DIR__.'/../src',
     'Mopa'             => __DIR__.'/../vendor/bundles',
+    'Stfalcon'         => __DIR__.'/../vendor/bundles',
     
 ));
 $loader->registerPrefixes(array(

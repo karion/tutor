@@ -71,3 +71,7 @@
     git = "git://github.com/twitter/bootstrap.git"
     target = "/bundles/Mopa/Bundle/BootstrapBundle/Resources/bootstrap"
     version = v2.0.3
+
+[TinymceBundle]
+    git=git://github.com/stfalcon/TinymceBundle.git
+    target=/bundles/Stfalcon/Bundle/TinymceBundle

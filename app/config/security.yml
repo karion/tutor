@@ -53,6 +53,9 @@ security:
             #http_basic:
             #    realm: "Secured Demo Area"
 
+    acl:
+        connection: default
+        
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+#        - { path: ^/admin/course/create, roles: ROLE_CREATOR }
         #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }

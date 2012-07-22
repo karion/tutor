@@ -107,6 +107,7 @@ class Course
     public function __construct()
     {
         $this->lesssons = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->active = false;
     }
     
     /**

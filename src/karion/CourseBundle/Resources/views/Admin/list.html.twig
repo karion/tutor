@@ -1,0 +1,42 @@
+{% extends "karionCourseBundle::layout.html.twig" %}
+
+{% block content %}
+  <div id="course-list">
+
+    {% if courses is empty %}
+      <h3>Lista kursów które możesz edytować</h3>
+      <div>
+        Lista jest pusta.
+      </div>
+      
+      
+      
+    {% else %}
+
+      
+      <h3>Lista kursów które możesz edytować</h3>
+      <div>
+        {% for course in courses %}
+          
+            <p><strong>
+              <a href="{{ path('karionCourseBundleAdmin_edit', {'id': course.id}) }}">
+                {{ course.title }}
+                </a></strong>
+            </p>
+          
+
+        {% endfor %}
+      </div> 
+    {% endif %}
+    {% if is_granted('ROLE_CREATOR') %}
+      <div>
+        <p>
+          <a class="btn btn-primary" href="{{ path('karionCourseBundleAdmin_create') }}">
+            Utwórz nowy kurs
+          </a>
+        </p>
+      </div>
+    {% endif %}
+  </div>
+        
+{% endblock %}

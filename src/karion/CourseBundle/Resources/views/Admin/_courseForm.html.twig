@@ -1,0 +1,14 @@
+<form 
+    action="{{ path( route ) }}" 
+    class="form-vertical well" 
+    id="courseForm"
+    method="post" 
+    {{ form_enctype(form) }}
+    >
+    
+    {{ form_errors(form) }}
+
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+
+    {{ form_rest(form) }}

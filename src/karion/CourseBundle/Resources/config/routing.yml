@@ -10,3 +10,8 @@ karionCourseBundle_courseShow:
     requirements: 
       _method: GET 
       id: \d+ 
+
+#admin       
+karionCourseBundleAdmin:
+  resource: "@karionCourseBundle/Resources/config/routing_admin.yml"
+  prefix:   /admin/course

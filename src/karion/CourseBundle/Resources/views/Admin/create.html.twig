@@ -1,0 +1,29 @@
+{% extends "karionCourseBundle::layout.html.twig" %}
+{% form_theme form 'MopaBootstrapBundle:Form:fields.html.twig' %}
+
+
+{% block content %}
+  <h2>Tworzenie kursu</h2>
+
+  {% if error is defined %}
+  {% if error %}
+    <div class="alert alert-error">{{ error }}</div>
+  {% endif %}
+  {% endif %}
+
+    {% include 
+        "karionCourseBundle:Admin:_courseForm.html.twig" 
+        with {'route': 'karionCourseBundleAdmin_create' }
+    %}
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">
+        Dodaj
+      </button>
+    </div>
+  </form>
+{% endblock %}
+
+{% block javascripts %}
+  {{ tinymce_init() }}
+{% endblock %}

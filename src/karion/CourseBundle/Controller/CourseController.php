@@ -32,7 +32,7 @@ class CourseController extends Controller
 			->getRepository('karionCourseBundle:Course')
       ->getOneWithLesson($id);
 //->find($id);
-    $pseudotrue = true;
+    //$pseudotrue = true;
     return $this->render(
             'karionCourseBundle:Course:show.html.twig', 
             array(

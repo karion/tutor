@@ -1,0 +1,10 @@
+#courseForm textarea#course_description{
+  width: 560px;
+  height: 400px;
+}
+
+/* naprawienie przycisków w well */
+.well .form-actions{
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}

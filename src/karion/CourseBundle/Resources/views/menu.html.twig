@@ -1,6 +1,6 @@
 <div id="menu" class="span4">
 
-  <h2>Menu</h2>
+  <h3>Menu</h3>
   <ul class="nav nav-list">
     <li>
       <a href="{{ path('karionCourseBundle_homepage') }}">
@@ -9,8 +9,19 @@
     </li>
 
   {% if is_granted('ROLE_CREATOR') %}
-    <li><a href="{{ path('logout') }}">Utwórz nowy kurs</a></li>
+    <li>
+      <a href="{{ path('karionCourseBundleAdmin_create') }}">
+        Utwórz nowy kurs
+      </a>
+    </li>
+    
+    <li>
+      <a href="{{ path('karionCourseBundleAdmin_list') }}">
+        Lista twoich kursów
+      </a>
+    </li>
   {% endif %}  
+
   {% if is_granted('ROLE_USER') %}
     <li><a href="{{ path('logout') }}">Wyloguj</a></li>
   {% else %}

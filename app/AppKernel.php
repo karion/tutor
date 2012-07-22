@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             
             new karion\CourseBundle\karionCourseBundle(),
             new karion\LessonBundle\karionLessonBundle(),
