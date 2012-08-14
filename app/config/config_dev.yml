@@ -4,6 +4,10 @@ imports:
 framework:
     router:   { resource: "%kernel.root_dir%/config/routing_dev.yml" }
     profiler: { only_exceptions: false }
+    session:
+      default_locale: %locale%
+      lifetime:       36000
+      auto_start:     true
 
 web_profiler:
     toolbar: true

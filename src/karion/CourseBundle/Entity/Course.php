@@ -29,6 +29,9 @@ class Course
      */
     private $active = false;
 
+    const ENABLE_TYPE_DISABLE = 1;
+    const ENABLE_TYPE_ENABLE = 0;
+    const ENABLE_TYPE_NOT_ENABLE = -1;
 
     /**
      * Get id
@@ -38,6 +41,16 @@ class Course
     public function getId()
     {
         return $this->id;
+    }
+    
+    /**
+     * Set id
+     *
+     * @param integer $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -87,7 +100,15 @@ class Course
      */
     public function setActive($active)
     {
+      if($active == true && count($this->lessons) == 0 )
+      {
+        $this->active = false;
+        throw new \Exception('Nie można aktywować kursu bez lekcji!') ;
+      }
+      else
+      {
         $this->active = $active;
+      }
     }
 
     /**
@@ -129,5 +150,27 @@ class Course
     public function getLessons()
     {
         return $this->lessons;
+    }
+    
+    /**
+     * Get Active Type
+     * Active Type say if Course can be enabled
+     * or disabled.
+     * Course can be enabled olny if has lessons
+     */
+    public function getActiveType()
+    {
+      if($this->getActive() == true)
+      {
+        return self::ENABLE_TYPE_DISABLE;
+      }
+      elseif($this->getActive() == false && $this->getLessons()->count() == 0)
+      {
+        return self::ENABLE_TYPE_NOT_ENABLE;
+      }
+      else
+      {
+        return self::ENABLE_TYPE_ENABLE;
+      }
     }
 }

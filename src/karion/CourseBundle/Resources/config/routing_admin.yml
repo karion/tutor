@@ -7,6 +7,13 @@ karionCourseBundleAdmin_edit:
     defaults: { _controller: karionCourseBundle:Admin:edit } 
     requirements: 
       id: \d+ 
+
+karionCourseBundleAdmin_enable:
+    pattern:  /enable/{id}
+    defaults: { _controller: karionCourseBundle:Admin:enable } 
+    requirements: 
+      _method: POST
+      id: \d+ 
       
 karionCourseBundleAdmin_list:
     pattern:  /list

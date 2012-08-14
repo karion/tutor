@@ -5,6 +5,17 @@
 {% block content %}
   <h2>Edycja kursu</h2>
 
+  
+  {% if app.session.hasFlash('error') %}
+    <div class="alert alert-error">
+      {{ app.session.flash('error') }}
+    </div>
+  {% endif %}
+  {% if app.session.hasFlash('info') %}
+    <div class="alert alert-info">
+      {{ app.session.flash('info') }}
+    </div>
+  {% endif %}
   {% if error is defined %}
   {% if error %}
     <div class="alert alert-error">{{ error }}</div>
@@ -13,7 +24,7 @@
 
     {% include 
         "karionCourseBundle:Admin:_courseForm.html.twig" 
-        with {'route': 'karionCourseBundleAdmin_edit' }
+        with {'route': path('karionCourseBundleAdmin_edit', {'id': course.id}) }
     %}
 
     <div class="form-actions">
@@ -21,7 +32,54 @@
         Zapisz
       </button>
     </div>
+    
   </form>
+  
+  <div class="well">
+    <h3>Edycja lekcji</h3>
+    
+    <p>
+      <ul>
+      {% for lesson in course.lessons %}
+        <li>{{ lesson.title }}</li>
+      {% endfor %}
+      </ul>
+    
+    </p>    
+  </div>
+  
+  <div class="well">
+    <h3>Publikowanie kursu</h3>
+    <p>
+      <form 
+        action="{{ path('karionCourseBundleAdmin_enable', {'id': course.id}) }}" 
+        id="courseEnableForm"
+        method="post" 
+        {{ form_enctype(enableForm) }}
+        >
+
+        {{ form_errors(enableForm) }}
+
+        {{ form_rest(enableForm) }}
+     
+        {% if type == constant('karion\\CourseBundle\\Entity\\Course::ENABLE_TYPE_DISABLE') %}
+        <button class="btn btn-danger" type="submit">
+          Zdejmij
+        {% elseif type == constant('karion\\CourseBundle\\Entity\\Course::ENABLE_TYPE_ENABLE') %}
+        <button class="btn btn-primary" type="submit">
+          Publikuj
+        {% else %}
+        <button class="btn btn-warning disabled" type="submit"  disabled="disabled">
+          Nie możesz opublikować
+        {% endif %}
+
+        </button>
+        {% if type == -1 %}
+        <span>Kurs musi mieć lekcje aby być opublikowany</span>
+        {% endif %}
+      </form>
+    </p>
+  </div>    
 {% endblock %}
 
 {% block javascripts %}
