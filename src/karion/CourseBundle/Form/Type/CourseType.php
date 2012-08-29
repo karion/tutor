@@ -17,9 +17,9 @@ class CourseType extends AbstractType
     $builder->add(
       'description', 'textarea', array(
         'label' => "Opis kursu",
-        'attr' => array(
-          'class' => 'tinymce',
-          'data-theme' => 'medium' // simple, advanced, bbcode
+        'attr'  => array(
+            'class'      => 'tinymce',
+            'data-theme' => 'medium' // simple, advanced, bbcode
         )
       )
     );

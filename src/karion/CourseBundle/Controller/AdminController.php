@@ -242,7 +242,7 @@ class AdminController extends Controller
    * @param type $id
    * @return type
    */
-  private function createEnableForm(Course $course)
+  protected function createEnableForm(Course $course)
   {
     return $this
       ->createFormBuilder(array('id' => $course->getId(), 'type' => $course->getActiveType() ))

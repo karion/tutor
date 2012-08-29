@@ -4,6 +4,12 @@ namespace karion\CourseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\MinLength;
+use Symfony\Component\Validator\Constraints\MaxLength;
+
 /**
  * karion\CourseBundle\Entity\Course
  */
@@ -172,5 +178,29 @@ class Course
       {
         return self::ENABLE_TYPE_ENABLE;
       }
+    }
+    
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('title', new NotBlank());
+        $metadata->addPropertyConstraint(
+          'title', 
+          new MinLength(
+            array(
+                'limit'       => 5, 
+                'message'     => 'Tytuł musi byś dłuższy niż {{ limit }} znaków'
+                )
+            )
+          );
+      
+        $metadata->addPropertyConstraint(
+          'description', 
+          new MinLength(
+            array(
+                'limit'   => 25, 
+                'message' => 'Opis kursu musi byś dłuższy niż {{ limit }} znaków')
+            )
+          );
+        
     }
 }
